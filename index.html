@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practical Use of the Event Loop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical Use of the Event Loop</title>
 </head>
 <body>
-  <h1>Practical Use of the Event Loop - Lab 308A.1.1</h1>  
+
+<div id="output"></div>
+
+<script>
+
+ // HTML element to hold text
+ 
+const outputElement = document.getElementById('output');
+
+/**
+ *  Write a function that takes a parameter n and adds a list
+ * of all prime numbers between one and n to the HTML element.
+ */
+const isPrime = (num) => {
+  if (num < 2) return false;
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+};
+
+const addPrimesToElement = (n, currentNumber = 2) => {
+  if (currentNumber <= n) {
+    if (isPrime(currentNumber)) {
+      outputElement.innerHTML += `<p>${currentNumber}</p>`;
+    }
+    setTimeout(() => addPrimesToElement(n, currentNumber + 1), 0);
+  } else {
+    alert('Prime number calculation finished!');
+  }
+};
+
+//Call the function with a parameter (e.g., 20).
+ 
+addPrimesToElement(20);
+</script>
+
 </body>
 </html>
